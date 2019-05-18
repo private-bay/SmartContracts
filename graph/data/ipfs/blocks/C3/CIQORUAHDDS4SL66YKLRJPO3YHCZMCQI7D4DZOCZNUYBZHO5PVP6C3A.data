@@ -1,0 +1,89 @@
+
+âÅdataSources:
+  - kind: ethereum/contract
+    mapping:
+      abis:
+        - file:
+            /: /ipfs/QmaHEvXF6K42bfsZDHp42D45iwKv49N7jbj88AR6k8iBEJ
+          name: LoanDapp
+      apiVersion: 0.0.2
+      entities:
+        - Loan User LenderAccess
+      eventHandlers:
+        - event: 'SettlementCurrencyAdded(uint256,address)'
+          handler: addSettlementCurrency
+        - event: 'LoanCreated(address,address,bytes32,string,uint256[],uint256)'
+          handler: createLoan
+        - event: LoanApprovedForSettlement(address)
+          handler: borrowerApproveLoan
+        - event: 'ViewRequestCreated(address,address,string)'
+          handler: createViewRequest
+        - event: 'ViewRequestApproved(uint256,address,address,string)'
+          handler: approveViewRequest
+        - event: 'NoteAccessApproved(uint256,bytes32,address,string)'
+          handler: approveNoteAccess
+        - event: 'SettlementSuccesfull(address,address,address,uint256)'
+          handler: settleLoan
+      file:
+        /: /ipfs/QmZUrK7xmniJ8q21GKsia9tRcQEUPQP1cL5EfqQyFgNoy4
+      kind: ethereum/events
+      language: wasm/assemblyscript
+    name: LoanDapp
+    network: development
+    source:
+      abi: LoanDapp
+      address: '0x7108847f144d025a6e82d7f5D591edd5c75c2AC7'
+    templates:
+      - kind: ethereum/contract
+        mapping:
+          abis:
+            - file:
+                /: /ipfs/QmfRpF8qR4Pnjj7A89TngodqxiHzfYj4z3zaHi1CNPj6TB
+              name: Loan
+          apiVersion: 0.0.2
+          entities:
+            - Loan
+          eventHandlers:
+            - event: 'LoanPayment(string,uint256)'
+              handler: receivePayment
+            - event: LoanDefault()
+              handler: markLoanAsDefault
+            - event: LoanRepaid()
+              handler: markLoanAsRepaid
+          file:
+            /: /ipfs/QmX38caVo9BLSKvyf4pdY4ni21BDBxZE27Ys4TXSGTpoKo
+          kind: ethereum/events
+          language: wasm/assemblyscript
+        name: Loan
+        network: development
+        source:
+          abi: Loan
+      - kind: ethereum/contract
+        mapping:
+          abis:
+            - file:
+                /: /ipfs/QmaPTS7T4TcGJVfmvJytQg7zo3WJjJKDqHu79iqUvawRzc
+              name: ZKERC20
+          apiVersion: 0.0.2
+          entities:
+            - Note Loan User
+          eventHandlers:
+            - event: 'CreateNote(address,bytes32,bytes)'
+              handler: createNote
+            - event: 'DestroyNote(address,bytes32,bytes)'
+              handler: destroyNote
+          file:
+            /: /ipfs/QmV4GSK9ZBNw7wtdKejGie3uCDCBtvDbJ6WHgwzsDTcPZy
+          kind: ethereum/events
+          language: wasm/assemblyscript
+        name: ZKERC20
+        network: development
+        source:
+          abi: ZKERC20
+description: Loan Dapp Starter Kit
+repository: 'https://github.com/graphprotocol/example-subgraph'
+schema:
+  file:
+    /: /ipfs/QmRoxMQy1Srr1gzwBucoxGD5jeXA2QjQAR69TZG6UAacqe
+specVersion: 0.0.1
+Å

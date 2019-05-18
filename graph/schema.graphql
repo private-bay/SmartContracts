@@ -1,0 +1,49 @@
+type Currency @entity {
+  id: ID!
+  address: Bytes!
+}
+
+type Note @entity {
+  id: ID!
+  ownerAddress: Bytes!
+  currencyAddress: Bytes!
+  access: [NoteAccess!] @derivedFrom(field:"note")
+  status: String!
+}
+
+type NoteAccess @entity {
+  id: ID!
+  note: Note!
+  user: User!
+  sharedSecret: String!
+}
+
+type Loan @entity {
+  id: ID!
+  notional: Note!
+  borrower: User!
+  lender: User
+  interestPeriod: BigInt!
+  interestRate: BigInt!
+  loanDuration: BigInt!
+  settlementCurrencyId: BigInt!
+  createdAt: BigInt!
+  settledAt: BigInt
+  repaidAt: BigInt
+  lastInterestWithdrawAt: BigInt
+  status: String!
+  viewRequests: [User!]
+  lenderAccess: [NoteAccess!]
+  balance: [Note!]
+}
+
+type User @entity {
+  id: ID!
+  address: Bytes!
+  publicKey: String
+  loans: [Loan!] @derivedFrom(field:"borrower")
+  approvedLoans: [Loan!]
+  settledLoans: [Loan!] @derivedFrom(field:"lender")
+  balance: [Note!]
+  balanceAccess: [NoteAccess!]
+}

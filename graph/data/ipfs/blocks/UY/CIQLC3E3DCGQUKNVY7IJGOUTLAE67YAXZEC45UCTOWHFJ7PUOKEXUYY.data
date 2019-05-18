@@ -1,0 +1,498 @@
+
+™E‘E[
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "JOIN_SPLIT_PROOF",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint24"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "ZERO_VALUE_NOTE_HASH",
+    "outputs": [
+      {
+        "name": "",
+        "type": "bytes32"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "PRIVATE_RANGE_PROOF",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint24"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "settlementCurrencies",
+    "outputs": [
+      {
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "DIVIDEND_PROOF",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint24"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "MINT_PROOF",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint24"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      },
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "loanPayments",
+    "outputs": [
+      {
+        "name": "from",
+        "type": "address"
+      },
+      {
+        "name": "to",
+        "type": "address"
+      },
+      {
+        "name": "notional",
+        "type": "bytes"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [],
+    "name": "BURN_PROOF",
+    "outputs": [
+      {
+        "name": "",
+        "type": "uint24"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "constant": true,
+    "inputs": [
+      {
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "name": "loans",
+    "outputs": [
+      {
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [
+      {
+        "name": "_aceAddress",
+        "type": "address"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "constructor"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "name": "id",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "settlementAddress",
+        "type": "address"
+      }
+    ],
+    "name": "SettlementCurrencyAdded",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "name": "loanId",
+        "type": "address"
+      }
+    ],
+    "name": "LoanApprovedForSettlement",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "name": "id",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "borrower",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "notional",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "name": "borrowerPublicKey",
+        "type": "string"
+      },
+      {
+        "indexed": false,
+        "name": "loanVariables",
+        "type": "uint256[]"
+      },
+      {
+        "indexed": false,
+        "name": "createdAt",
+        "type": "uint256"
+      }
+    ],
+    "name": "LoanCreated",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "name": "loanId",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "lender",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "lenderPublicKey",
+        "type": "string"
+      }
+    ],
+    "name": "ViewRequestCreated",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "name": "accessId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "loanId",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "user",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "sharedSecret",
+        "type": "string"
+      }
+    ],
+    "name": "ViewRequestApproved",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "name": "accessId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "name": "note",
+        "type": "bytes32"
+      },
+      {
+        "indexed": false,
+        "name": "user",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "sharedSecret",
+        "type": "string"
+      }
+    ],
+    "name": "NoteAccessApproved",
+    "type": "event"
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "name": "from",
+        "type": "address"
+      },
+      {
+        "indexed": true,
+        "name": "to",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "loanId",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "name": "timestamp",
+        "type": "uint256"
+      }
+    ],
+    "name": "SettlementSuccesfull",
+    "type": "event"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "_id",
+        "type": "uint256"
+      },
+      {
+        "name": "_address",
+        "type": "address"
+      }
+    ],
+    "name": "addSettlementCurrency",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "_notional",
+        "type": "bytes32"
+      },
+      {
+        "name": "_viewingKey",
+        "type": "string"
+      },
+      {
+        "name": "_borrowerPublicKey",
+        "type": "string"
+      },
+      {
+        "name": "_loanVariables",
+        "type": "uint256[]"
+      },
+      {
+        "name": "_proofData",
+        "type": "bytes"
+      }
+    ],
+    "name": "createLoan",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "_noteHash",
+        "type": "bytes32"
+      },
+      {
+        "name": "_signature",
+        "type": "bytes"
+      },
+      {
+        "name": "_loanId",
+        "type": "address"
+      }
+    ],
+    "name": "approveLoanNotional",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "_loanId",
+        "type": "address"
+      },
+      {
+        "name": "_lenderPublicKey",
+        "type": "string"
+      }
+    ],
+    "name": "submitViewRequest",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "_loanId",
+        "type": "address"
+      },
+      {
+        "name": "_lender",
+        "type": "address"
+      },
+      {
+        "name": "_notionalNote",
+        "type": "bytes32"
+      },
+      {
+        "name": "_sharedSecret",
+        "type": "string"
+      }
+    ],
+    "name": "approveViewRequest",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "_loanId",
+        "type": "address"
+      },
+      {
+        "name": "_proofData",
+        "type": "bytes"
+      },
+      {
+        "name": "_currentInterestBalance",
+        "type": "bytes32"
+      }
+    ],
+    "name": "settleInitialBalance",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "constant": false,
+    "inputs": [
+      {
+        "name": "_note",
+        "type": "bytes32"
+      },
+      {
+        "name": "_viewingKey",
+        "type": "string"
+      },
+      {
+        "name": "_sharedSecret",
+        "type": "string"
+      },
+      {
+        "name": "_sharedWith",
+        "type": "address"
+      }
+    ],
+    "name": "approveNoteAccess",
+    "outputs": [],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+  }
+]‘E
